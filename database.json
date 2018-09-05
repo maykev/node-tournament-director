@@ -1,0 +1,12 @@
+{
+    "dev": {
+        "driver": "pg",
+        "host": "localhost",
+        "database": "node_tournament_director_development"
+    },
+    "test": {
+        "driver": "pg",
+        "host": "localhost",
+        "database": "node_tournament_director_test"
+    }
+}

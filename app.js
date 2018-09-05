@@ -1,10 +1,16 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+require('dotenv').config();
+
+const HttpError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const { Pool, Client } = require('pg');
+
+const routes = require('./routes');
 
 var app = express();
+routes(app);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,7 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-    next(createError(404));
+    next(HttpError.NotFound());
 });
 
 // error handler
